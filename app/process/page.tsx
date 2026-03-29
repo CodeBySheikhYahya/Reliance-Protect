@@ -203,9 +203,9 @@ function StepContent({
 }: {
   step: (typeof PROCESS_STEPS_FULL)[number];
   index: number;
-  iconY: MotionValue;
-  iconX: MotionValue;
-  iconRotate: MotionValue;
+  iconY: MotionValue<number>;
+  iconX: MotionValue<number>;
+  iconRotate: MotionValue<number>;
   alignRight?: boolean;
 }) {
   return (
