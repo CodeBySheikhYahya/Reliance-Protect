@@ -109,7 +109,23 @@ function ProcessStep({
         } justify-center px-4 lg:px-8`}
       >
         {isLeft && (
-          <StepContent step={step} index={index} iconY={iconY} iconX={iconX} iconRotate={iconRotate} alignRight />
+          <>
+            <motion.div
+              style={{ y: iconY, x: iconX, rotate: iconRotate }}
+              className="mb-4 flex h-16 w-16 items-center justify-center self-end rounded-2xl bg-gradient-to-br from-electric to-cyan-accent text-white shadow-xl shadow-electric/25"
+            >
+              {ICONS[step.icon]}
+            </motion.div>
+            <span className="mb-1 block font-[family-name:var(--font-display)] text-[10px] font-bold uppercase tracking-[0.25em] text-electric/60">
+              Step {step.step} — {step.subtitle}
+            </span>
+            <h3 className="font-[family-name:var(--font-display)] text-2xl font-bold sm:text-3xl">
+              {step.title}
+            </h3>
+            <p className="mt-3 max-w-md text-sm leading-relaxed text-white/50 sm:text-base">
+              {step.description}
+            </p>
+          </>
         )}
       </motion.div>
 
@@ -153,7 +169,23 @@ function ProcessStep({
         } justify-center px-4 lg:px-8`}
       >
         {!isLeft && (
-          <StepContent step={step} index={index} iconY={iconY} iconX={iconX} iconRotate={iconRotate} />
+          <>
+            <motion.div
+              style={{ y: iconY, x: iconX, rotate: iconRotate }}
+              className="mb-4 flex h-16 w-16 items-center justify-center self-start rounded-2xl bg-gradient-to-br from-electric to-cyan-accent text-white shadow-xl shadow-electric/25"
+            >
+              {ICONS[step.icon]}
+            </motion.div>
+            <span className="mb-1 block font-[family-name:var(--font-display)] text-[10px] font-bold uppercase tracking-[0.25em] text-electric/60">
+              Step {step.step} — {step.subtitle}
+            </span>
+            <h3 className="font-[family-name:var(--font-display)] text-2xl font-bold sm:text-3xl">
+              {step.title}
+            </h3>
+            <p className="mt-3 max-w-md text-sm leading-relaxed text-white/50 sm:text-base">
+              {step.description}
+            </p>
+          </>
         )}
       </motion.div>
 
@@ -188,46 +220,6 @@ function ProcessStep({
         </div>
       </motion.div>
     </div>
-  );
-}
-
-/* ─── Shared content block ─── */
-function StepContent({
-  step,
-  index,
-  iconY,
-  iconX,
-  iconRotate,
-  alignRight,
-}: {
-  step: (typeof PROCESS_STEPS_FULL)[number];
-  index: number;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  iconY: any;
-  iconX: any;
-  iconRotate: any;
-  alignRight?: boolean;
-}) {
-  return (
-    <>
-      <motion.div
-        style={{ y: iconY, x: iconX, rotate: iconRotate }}
-        className={`mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-electric to-cyan-accent text-white shadow-xl shadow-electric/25 ${
-          alignRight ? "self-end" : "self-start"
-        }`}
-      >
-        {ICONS[step.icon]}
-      </motion.div>
-      <span className="mb-1 block font-[family-name:var(--font-display)] text-[10px] font-bold uppercase tracking-[0.25em] text-electric/60">
-        Step {step.step} — {step.subtitle}
-      </span>
-      <h3 className="font-[family-name:var(--font-display)] text-2xl font-bold sm:text-3xl">
-        {step.title}
-      </h3>
-      <p className="mt-3 max-w-md text-sm leading-relaxed text-white/50 sm:text-base">
-        {step.description}
-      </p>
-    </>
   );
 }
 
