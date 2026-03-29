@@ -137,8 +137,8 @@ export const WHY_US_FEATURES = [
 ] as const;
 
 export const WHY_US_COUNTERS = [
-  { value: 15, suffix: "+", label: "Years of Trust" },
-  { value: 50000, suffix: "+", label: "Clients Protected" },
+  { value: 15, prefix: "", suffix: "+", label: "Years of Trust" },
+  { value: 50000, prefix: "", suffix: "+", label: "Clients Protected" },
   { value: 2, prefix: "$", suffix: "B+", label: "Claims Paid Out" },
 ] as const;
 

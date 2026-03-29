@@ -9,7 +9,7 @@ import {
 } from "framer-motion";
 
 interface ParallaxOptions {
-  offset?: [string, string];
+  offset?: ["start end" | "end start" | "start start" | "end end", "start end" | "end start" | "start start" | "end end"];
   smooth?: boolean;
   stiffness?: number;
   damping?: number;
@@ -27,7 +27,7 @@ export function useSectionParallax(options: ParallaxOptions = {}) {
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: offset as [string, string],
+    offset: offset,
   });
 
   const raw = scrollYProgress;
