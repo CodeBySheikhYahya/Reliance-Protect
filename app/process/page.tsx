@@ -7,7 +7,6 @@ import {
   useTransform,
   useSpring,
   useInView,
-  type MotionValue,
 } from "framer-motion";
 import Link from "next/link";
 import { PROCESS_STEPS_FULL } from "@/lib/constants";
@@ -203,9 +202,10 @@ function StepContent({
 }: {
   step: (typeof PROCESS_STEPS_FULL)[number];
   index: number;
-  iconY: MotionValue<number>;
-  iconX: MotionValue<number>;
-  iconRotate: MotionValue<number>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  iconY: any;
+  iconX: any;
+  iconRotate: any;
   alignRight?: boolean;
 }) {
   return (
