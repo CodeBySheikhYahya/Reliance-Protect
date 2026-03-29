@@ -17,6 +17,9 @@ export function FinalCTA() {
   const orb1X = useTransform(scrollYProgress, [0, 1], [-30, 30]);
   const orb3X = useTransform(scrollYProgress, [0, 1], [20, -20]);
   const contentY = useTransform(scrollYProgress, [0, 1], [30, -15]);
+  const dot1Y = useTransform(scrollYProgress, [0, 1], [-40, 60]);
+  const dot2Y = useTransform(scrollYProgress, [0, 1], [30, -50]);
+  const dot3Y = useTransform(scrollYProgress, [0, 1], [-20, 40]);
 
   return (
     <section ref={sectionRef} className="relative overflow-hidden py-24 sm:py-32">
@@ -39,15 +42,15 @@ export function FinalCTA() {
 
       {/* Foreground accent dots at 1.5x speed */}
       <motion.div
-        style={{ y: useTransform(scrollYProgress, [0, 1], [-40, 60]) }}
+        style={{ y: dot1Y }}
         className="absolute right-[20%] top-[15%] h-2 w-2 rounded-full bg-white/30"
       />
       <motion.div
-        style={{ y: useTransform(scrollYProgress, [0, 1], [30, -50]) }}
+        style={{ y: dot2Y }}
         className="absolute left-[25%] bottom-[20%] h-3 w-3 rounded-full bg-white/20"
       />
       <motion.div
-        style={{ y: useTransform(scrollYProgress, [0, 1], [-20, 40]) }}
+        style={{ y: dot3Y }}
         className="absolute right-[35%] bottom-[30%] h-1.5 w-1.5 rounded-full bg-white/40"
       />
 

@@ -7,6 +7,7 @@ import {
   useTransform,
   useSpring,
   useInView,
+  type MotionValue,
 } from "framer-motion";
 import Link from "next/link";
 import { PROCESS_STEPS_FULL } from "@/lib/constants";
@@ -202,9 +203,9 @@ function StepContent({
 }: {
   step: (typeof PROCESS_STEPS_FULL)[number];
   index: number;
-  iconY: ReturnType<typeof useTransform>;
-  iconX: ReturnType<typeof useTransform>;
-  iconRotate: ReturnType<typeof useTransform>;
+  iconY: MotionValue;
+  iconX: MotionValue;
+  iconRotate: MotionValue;
   alignRight?: boolean;
 }) {
   return (
@@ -228,19 +229,6 @@ function StepContent({
       </p>
     </>
   );
-}
-
-/* ─── Sticky navbar for this page ─── */
-function ProcessNav() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  return null;
 }
 
 /* ─── Stats row ─── */
@@ -280,6 +268,9 @@ export default function ProcessPage() {
 
   const heroOrbY = useTransform(scrollYProgress, [0, 1], [0, -200]);
   const heroOrb2Y = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const bgAccent1Y = useTransform(scrollYProgress, [0, 1], [120, -120]);
+  const bgAccent2Y = useTransform(scrollYProgress, [0, 1], [-80, 80]);
+  const bgAccent3Y = useTransform(scrollYProgress, [0, 1], [60, -60]);
 
   return (
     <>
@@ -373,15 +364,15 @@ export default function ProcessPage() {
       <section ref={timelineRef} className="relative overflow-hidden py-16 sm:py-24">
         {/* Parallax background accents */}
         <motion.div
-          style={{ y: useTransform(scrollYProgress, [0, 1], [120, -120]) }}
+          style={{ y: bgAccent1Y }}
           className="pointer-events-none absolute left-[5%] top-[15%] h-80 w-80 rounded-full bg-electric/4 blur-[160px]"
         />
         <motion.div
-          style={{ y: useTransform(scrollYProgress, [0, 1], [-80, 80]) }}
+          style={{ y: bgAccent2Y }}
           className="pointer-events-none absolute right-[8%] top-[50%] h-60 w-60 rounded-full bg-cyan-accent/4 blur-[130px]"
         />
         <motion.div
-          style={{ y: useTransform(scrollYProgress, [0, 1], [60, -60]) }}
+          style={{ y: bgAccent3Y }}
           className="pointer-events-none absolute left-[40%] bottom-[10%] h-48 w-48 rounded-full bg-electric/3 blur-[120px]"
         />
 
@@ -470,5 +461,3 @@ export default function ProcessPage() {
   );
 }
 
-/* ─── Required imports for ProcessNav (used in top bar) ─── */
-import { useState, useEffect } from "react";

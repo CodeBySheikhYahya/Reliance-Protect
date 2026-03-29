@@ -6,11 +6,12 @@ import { motion } from "framer-motion";
 export function CustomCursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [visible, setVisible] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
 
   useEffect(() => {
-    const isTouchDevice =
-      typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches;
-    if (isTouchDevice) return;
+    const touch = window.matchMedia("(pointer: coarse)").matches;
+    setIsTouch(touch);
+    if (touch) return;
 
     const move = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
@@ -29,9 +30,7 @@ export function CustomCursor() {
     };
   }, [visible]);
 
-  if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
-    return null;
-  }
+  if (isTouch) return null;
 
   return (
     <motion.div
